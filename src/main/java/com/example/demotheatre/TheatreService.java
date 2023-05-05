@@ -26,11 +26,9 @@ public class TheatreService {
         rep.deleteById(id);
     }
 
-    // метод для получения, т.е. поиска
+
     public Theatre get(Long id) {
         return rep.findById(id).get();
     }
-
-
 
 }
