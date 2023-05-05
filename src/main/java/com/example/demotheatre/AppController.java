@@ -32,13 +32,14 @@ public class AppController {
         return "new_theatre";
     }
 
-
+    // для сохранения информации о пьесе
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveTheatre(@ModelAttribute("theatre") Theatre theatre){
         service.save(theatre);
         return "redirect:/";
     }
 
+    // для редактирования (по id)
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditTheatreFrom(@PathVariable(name="id") Long id){
         ModelAndView mav = new ModelAndView("edit_theatre");
@@ -47,6 +48,7 @@ public class AppController {
         return mav;
     }
 
+    // для удаления (по id)
     @RequestMapping("/delete/{id}")
     public String deleteTheatre(@PathVariable(name="id") Long id){
         service.delete(id);
