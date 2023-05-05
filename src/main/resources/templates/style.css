@@ -1,0 +1,19 @@
+body {
+    overflow-x: hidden;
+    font-size: 100%;
+    zoom: 1;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 80%;
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body {
+        font-size: 60%;
+        zoom: 0.6;
+    }
+}
