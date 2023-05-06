@@ -3,7 +3,6 @@ package com.example.demotheatre;
 
 import java.util.List;
 
-import com.example.demotheatre.blog.Blog;
 import com.example.demotheatre.blog.BlogService;
 import com.example.demotheatre.config.UserInfo;
 import com.example.demotheatre.config.UserService;
