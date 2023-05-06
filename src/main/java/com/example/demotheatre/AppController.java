@@ -33,38 +33,6 @@ public class AppController {
     private UserService userService;
 
 
-    @GetMapping("/blog")
-    public String showBlog(Model model, @Param("keyword") String keyword) {
-        List<Blog> listPosts = blogService.listAll(keyword);
-        model.addAttribute("listPosts", listPosts);
-        model.addAttribute("keyword", keyword);
-        return "blog";
-    }
-    @GetMapping("/new_post")
-    public String showNewPostForm(Model model) {
-        Blog blog = new Blog();
-        model.addAttribute("blog", blog);
-        return "new_post";
-    }
-    @PostMapping("/save_post")
-    public String savePost(@ModelAttribute("blog") Blog blog) {
-        blogService.save(blog);
-        return "redirect:/blog";
-    }
-
-    @GetMapping("/delete_post/{post_id}")
-    public String deletePost(@PathVariable(name = "post_id") Long post_id) {
-        blogService.delete(post_id);
-        return "redirect:/blog";
-    }
-
-    @GetMapping("/edit_post/{post_id}")
-    public ModelAndView showEditPostForm(@PathVariable(name="post_id") Long post_id) {
-        ModelAndView mav = new ModelAndView("edit_post");
-        Blog blog = blogService.get(post_id);
-        mav.addObject("Blog", blog);
-        return mav;
-    }
 
     @PostMapping("/auth/register")
     public String addNewUser(@ModelAttribute UserInfo userInfo, @RequestParam String name, @RequestParam String roles, HttpSession session) {
