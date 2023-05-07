@@ -12,50 +12,70 @@
         }
 
         .back{
-            align-items: flex-start;
             background-color: #ADD5C2;
-            display: flex;
             gap: 528px;
-            height: 89px;
+            height: 100px;
             min-width: 1440px;
-            padding: 26px 0;
-        }
-
-        .text_header{
-
-
-
-
+            padding: 20px 30px;
         }
 
 
+        * {box-sizing: border-box;}
+        form {
+            position: relative;
+            width: 700px;
+            margin: 50px auto;
+        }
+
+        input {
+            width: 100%;
+            height: 60px;
+            padding-left: 10px;
+            border: 5px solid #ADD5C2;
+            border-radius: 5px;
+            outline: none;
+            background: white;
+            color: black;
+        }
+
+        .button_bd_edit{
+            background: #ADD5C2;
+            border-radius: 7px;
+            padding: 8px 16px;
+            border: 5px solid #ADD5C2;
+            font: 17px Arial;
+        }
+
+        .button_bd_delete{
+            background: #F08080;
+            border-radius: 7px;
+            width:70px;
+            padding: 8px 0px;
+            border: 5px solid #F08080;
+            font: 17px Arial;
+        }
 
     </style>
-
-
 </head>
+
 <body>
-<div class="back">
-<blockquote class="blockquote text-center text-black"><h1 align="left">Информационно-справочная система театра</h1></blockquote>
-<blockquote class="blockquote text-center text-black"><h1 align="right">Об авторе</h1></blockquote>
-</div>
 
-
-
-<div class="row">
-    <div class="col-md-8 offset-md-4">
-        <form th:action="@{/}">
-            <label>
-                <input type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required/>
-            </label>
-            <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
-            <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear" onclick="clearSearch()"/>
-        </form>
+<div style="clear: both">
+    <div class="back">
+        <h1 style="float: left">Информационно-справочная система театра</h1>
+        <a href="/about_us" ><h1 style="float: right; color: #030303">Об авторе</h1></a>
     </div>
 </div>
 
+
+
+<form th:action="@{/}">
+    <input type="text" placeholder="Искать здесь..." th:value="${keyword}" required/>
+</form>
+
+
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-<table id="1" class="table table-striped table-hover sortable" style="color: white">
+<table id="1" class="table table-striped table-hover sortable" bordercolor="white">
     <thead>
     <tr>
         <th scope="col" class="text-black">ID</th>
@@ -67,37 +87,27 @@
         <th scope="col" class="text-black">Действия</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="theatre: ${listTheatre}">
-        <th scope="row" class="text-black" th:text="${theatre.id}">ID  отстутствует</th>
-        <th scope="row" class="text-black" th:text="${theatre.name_play}">Название пьесы отстутствует</th>
-        <th scope="row" class="text-black" th:text="${theatre.director}">Режиссер отстутствует</th>
-        <th scope="row" class="text-black" th:text="${theatre.data}">Дата пьесы отстутствует</th>
-        <th scope="row" class="text-black" th:text="${theatre.duration}">Длительность отстутствует</th>
-        <th scope="row" class="text-black" th:text="${theatre.adress}">Адрес филиала отстутствует</th>
+        <th scope="row" th:text="${theatre.id}"><span style="color: grey;">ID  отсутствует</span></th>
+        <th scope="row" th:text="${theatre.name_play}"><span style="color: grey;">Название пьесы отсутствует</span></th>
+        <th scope="row" th:text="${theatre.director}"><span style="color: grey;">Режиссер отсутствует</span></th>
+        <th scope="row" th:text="${theatre.data}"><span style="color: grey;">Дата пьесы отсутствует</span></th>
+        <th scope="row" th:text="${theatre.duration}"><span style="color: grey;">Длительность отсутствует</span></th>
+        <th scope="row" th:text="${theatre.adress}"><span style="color: grey;">Адрес филиала отсутствует</span></th>
         <td>
-            <a th:href="@{'/edit/'+${theatre.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
-            <a th:href="@{'/delete/'+${theatre.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
+            <a th:href="@{'/edit/'+${theatre.id}}"><button type="button" class="button_bd_edit">Редактировать</button></a>
+            <a th:href="@{'/delete/'+${theatre.id}}"><button type="button" class="button_bd_delete">Удалить</button></a>
         </td>
     </tr>
     </tbody>
-</table>
-<p class="text-black">
-    <script type="text/javascript">
-        function getRowsColumn() {
-            let table = document.getElementById('1')
-            let tBody = table.querySelector('tbody')
-            const count = tBody.querySelectorAll('tr').length
-            document.write('Количество записей в таблице: ' + count)
-        }
-        getRowsColumn()
-    </script>
-</p>
 
+</table>
 
 <blockquote class="blockquote text-center">
     <a href="/new">
-        <button type="button" class="btn btn-primary" data-togge="button" aria-pressed="false" autocomplete="off">
+        <button type="button" class="btn btn-primary" data-togge="button" aria-pressed="false" autocomplete="off" style="background-color: #ADD5C2; border: 5px solid #ADD5C2; color: black; font: 20px Arial;" >
             Добавить запись
         </button>
     </a>
@@ -105,15 +115,6 @@
         <canvas style="background-color: #D3DFDE;" height="400px" width="50%" id="myChart"></canvas>
     </div>
 </blockquote>
-
-
-<script type="text/javascript">
-    function clearSearch() {
-        window.location = "[[@{/}]]";
-    }
-</script>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -158,11 +159,9 @@
         }
     });
 </script>
+
+
 <hr>
-<form name="form1" style="text-align: center;">
-    <p>Выберите месяц для построения гистограммы:</p>
-    <input type="month" name="doa" onchange="display()">
-</form>
 <div>
     <canvas style="background-color: #D3DFDE;" height="400px" width="50%" id="myChart1"></canvas>
 </div>
@@ -279,5 +278,6 @@
 
     }
 </script>
+
 </body>
 </html>
