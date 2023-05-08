@@ -55,6 +55,18 @@
             font: 17px Arial;
         }
 
+        .button_search{
+            position: absolute;
+            top: 0;
+            right: 0px;
+            width: 80px;
+            height: 60px;
+            border: none;
+            background: #ADD5C2;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -68,10 +80,15 @@
 </div>
 
 
-
-<form th:action="@{/}">
-    <input type="text" placeholder="Искать здесь..." th:value="${keyword}" required/>
-</form>
+<div class="row" style="margin-left: -580px; margin-top:10px">
+    <div class="col-md-8 offset-md-4">
+        <form th:action="@{/}" style="margin-bottom: 2px">
+            <input type="text" name="keyword" id="keyword" placeholder="Введите запрос..." size="70"
+                   th:value="${keyword}" required/><label for="keyword"><i class="fas fa-search"></i></label>
+            <input type="submit" class="button_search" value="Поиск"/>
+        </form>
+    </div>
+</div>
 
 
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
@@ -117,167 +134,7 @@
 </blockquote>
 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script >
-    let table = document.getElementById('1')
-    let tBody = table.querySelector('tbody')
-    let ths = tBody.querySelectorAll('th')
-
-    let xValues = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
-        'Ноябрь', 'Декабрь']
-    let yValues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-    for (let i = 1; i < ths.length; i++) {
-        let month = ths[i].innerText.slice(5, 7)
-        let index = parseInt(month, 10) - 1
-        yValues[index] += 1
-    }
-
-    new Chart('myChart', {
-        type: 'bar',
-        data: {
-            labels: xValues,
-            datasets: [{
-                label: 'Статистика',
-                data: yValues,
-                borderWidth: 1,
-                fill: true,
-                backgroundColor: [
-                    'rgb(13, 152, 186)'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-
-
-<hr>
-<div>
-    <canvas style="background-color: #D3DFDE;" height="400px" width="50%" id="myChart1"></canvas>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script type="text/javascript">
-    let d;
-
-    function display() {
-        d = form1.doa.value;
-        d = d.split("-");
-        d = d[1];
-        let xValues;
-        let q;
-        switch (d) {
-            case "01":
-                q = '01';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-            case "02":
-                q = '02';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28']
-                break;
-            case "03":
-                q = '03';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-            case "04":
-                q = '04';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-                break;
-            case "05":
-                q = '05';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-            case "06":
-                q = '06';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-                break;
-            case "07":
-                q = '07';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-            case "08":
-                q = '08';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-            case "09":
-                q = '09';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-                break;
-            case "10":
-                q = '10';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-            case "11":
-                q = '11';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-                break;
-            case "12":
-                q = '12';
-                xValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-                    '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-                break;
-        }
-
-        let table = document.getElementById('1')
-        let tBody = table.querySelector('tbody')
-        let ths = tBody.querySelectorAll('th')
-
-        let yValues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        for (let i = 1; i < ths.length; i++) {
-            let month = ths[i].innerText.slice(8, 10)
-            let index = parseInt(month, 10) - 1
-            if (q === ths[i].innerText.slice(5, 7)) {
-                yValues[index] += 1
-            }
-        }
-
-        new Chart('myChart1', {
-            type: 'bar',
-            data: {
-                labels: xValues,
-                datasets: [{
-                    label: 'Гистограмма по дням',
-                    data: yValues,
-                    borderWidth: 1,
-                    fill: true,
-
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-
-    }
-</script>
 
 </body>
 </html>

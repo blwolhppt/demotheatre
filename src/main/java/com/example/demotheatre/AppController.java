@@ -3,7 +3,7 @@ package com.example.demotheatre;
 
 import java.util.List;
 
-import com.example.demotheatre.blog.BlogService;
+
 import com.example.demotheatre.config.UserInfo;
 import com.example.demotheatre.config.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +26,6 @@ public class AppController {
 
 
     private final TheatreService theatreService;
-    private final BlogService blogService;
 
     @Autowired
     private UserService userService;
