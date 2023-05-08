@@ -146,6 +146,9 @@
     </div>
 </blockquote>
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <hr>
@@ -154,8 +157,8 @@
     <input type="month" name="doa" onChange="display()">
 </form>
 <div>
-    <canvas style="background-color: aliceblue;" height="400px" width="50%" id="myChart1"></canvas>
-    <canvas style="background-color: #D3DFDE;" height="400px" width="50%" id="myChart1"></canvas>
+    <canvas style="background-color: #D3DFDE;" height="100px" width="50%" id="myChart1"></canvas>
+    <canvas style="background-color: #D3DFDE;" height="100px" width="50%" id="myChart1"></canvas>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -248,7 +251,7 @@
                 datasets: [{
                     label: 'Гистограмма по дням',
                     data: yValues,
-                    borderWidth: 1,
+                    borderWidth: 5,
                     fill: true,
                 }]
             },
