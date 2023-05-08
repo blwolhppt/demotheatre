@@ -67,6 +67,16 @@
             cursor: pointer;
         }
 
+        .button_bd_exit{
+            background: #F08080;
+            border-radius: 7px;
+            padding: 8px 16px;
+            border: 5px solid #F08080;
+            font: 17px Arial;
+            margin-left: -400px;
+            margin-top: 40px;
+        }
+
     </style>
 </head>
 
@@ -74,10 +84,12 @@
 
 <div style="clear: both">
     <div class="back">
-        <h1 style="float: left">Информационно-справочная система театра</h1>
-        <a href="/about_us" ><h1 style="float: right; color: #030303">Об авторе</h1></a>
+        <h2 style="float: left; ">Информационно-справочная система театра</h2>
+        <a href="/about_us" ><h2 style="float: right; color: #030303">Об авторе</h2></a>
+        <form th:action="@{/logout}" method="post"><button class="button_bd_exit"><b>Выход</b></button></form>
     </div>
 </div>
+
 
 
 <div class="row" style="margin-left: -580px; margin-top:10px">
