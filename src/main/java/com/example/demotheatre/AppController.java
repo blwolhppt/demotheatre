@@ -1,6 +1,8 @@
 package com.example.demotheatre;
 
+
 import java.util.List;
+
 
 import com.example.demotheatre.config.UserInfo;
 import com.example.demotheatre.config.UserService;
@@ -21,10 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class AppController {
+
+
     private final TheatreService theatreService;
 
     @Autowired
     private UserService userService;
+
+
 
     @PostMapping("/auth/register")
     public String addNewUser(@ModelAttribute UserInfo userInfo, @RequestParam String name, @RequestParam String roles, HttpSession session) {
@@ -40,32 +46,20 @@ public class AppController {
         return "register";
     }
 
+
+
+
     // основная страничка
     @RequestMapping("/")
-    public String viewHomePage(Model model, @Param("keyword") String keyword, @PathVariable(name="id") Long id){
+    public String viewHomePage(Model model, @Param("keyword") String keyword){
         List<Theatre> listTheatre = theatreService.listAll(keyword);
         model.addAttribute("listTheatre", listTheatre);
         model.addAttribute("keyword", keyword);
         Theatre theatre = new Theatre();
         model.addAttribute("theatre", theatre);
-
-        ModelAndView mav = new ModelAndView("edit_theatre");
-        Theatre theatre2 = theatreService.get(id);
-        mav.addObject("theatre2", theatre2);
-
         return "index";
     }
 
-
-
-
-    // для добавления информации о пьесе
-    @RequestMapping("/new")
-    public String showNewTheatreForm(Model model){
-        Theatre theatre = new Theatre();
-        model.addAttribute("theatre", theatre);
-        return "new_theatre";
-    }
 
     // для сохранения информации о пьесе
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -83,12 +77,22 @@ public class AppController {
         return mav;
     }
 
+    @RequestMapping("/more_info/{id}")
+    public ModelAndView showMoreTheatreFrom(@PathVariable(name="id") Long id){
+        ModelAndView mav = new ModelAndView("more_info");
+        Theatre theatre = theatreService.get(id);
+        mav.addObject("theatre", theatre);
+        return mav;
+    }
     // для удаления (по id)
     @RequestMapping("/delete/{id}")
     public String deleteTheatre(@PathVariable(name="id") Long id){
         theatreService.delete(id);
         return "redirect:/";
     }
+
+
+
 
     //  регистрация, вход
     @GetMapping("/login_page")
@@ -106,4 +110,8 @@ public class AppController {
         session.setAttribute("username", currentUser);
         return "redirect:/";
     }
+
+
+
+
 }
