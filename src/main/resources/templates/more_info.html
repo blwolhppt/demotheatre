@@ -42,7 +42,6 @@
             border-radius: 10px;
             box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
             position: relative;
-
         }
         .modal {
             visibility: hidden;
@@ -61,7 +60,8 @@
 
         .modal__content {
             border-radius: 4px;
-            width: 400px;
+            width: 370px;
+            height: 320px;
             background: #fff;
 
         }
@@ -86,6 +86,20 @@
         h2 {
             text-align: center;
             font-size: 34px;
+            padding-top: 20px;
+            color: white;
+
+        }
+
+        input{
+            width: 100%;
+            height: 30px;
+            padding-left: 20px;
+            border: 2px solid #ff9966;
+            border-radius: 50px;
+            outline: none;
+            background: white;
+            color: black;
         }
 
         p {
@@ -93,6 +107,22 @@
             font-size: 1.5rem;
             line-height: 1.45;
             color: #333;
+        }
+
+        .btn_primary_save{
+            border: none;
+            outline: none;
+            background: linear-gradient(90deg, #ff9966, #ff5e62);
+            padding: 1rem 1rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
+            transition: all 0.2s ease-in;
+            text-decoration: none;
+            margin-left: 10px;
+            margin-top: 10px;
+
         }
 
         .btn_primary {
@@ -127,6 +157,7 @@
 
 <body>
 <h2>Информационно-справочная система театра</h2>
+<div class="body_blog">
 <div class="blog_post">
     <div class="container_copy">
 
@@ -137,54 +168,55 @@
         <p><h5>Адрес: </h5><th scope="row" th:text="${theatre.adress}"><span style="color: grey;">Адрес филиала отсутствует</span></th></p>
         <td>
             <a href="#demo-modal"><button type="button" class="btn_primary">Редактировать</button></a>
+            <a th:href="@{'/delete/'+${theatre.id}}"><button type="button" class="btn_primary">Удалить</button></a>
         </td>
     </div>
 </div>
-
+</div>
 
 <div id="demo-modal" class="modal">
     <div class="modal__content">
         <form action="#" th:action="@{/save}" th:object="${theatre}" method="post">
             <table>
                 <tr>
-                    <td>ID:</td>
+                    <td><h5 style="margin-left: 10px; margin-top:10px">ID:</h5></td>
                     <td><label>
-                        <input type="text" th:field="*{id}" >
+                        <input style="margin-left: 10px; margin-top:10px" type="text" th:field="*{id}" >
                     </label></td>
                 </tr>
                 <tr>
-                    <td>Название пьесы:</td>
+                    <td><h5 style="margin-left: 10px; margin-top:10px">Название пьесы:</h5></td>
                     <td><label>
-                        <input type="text" th:field="*{name_play}" >
+                        <input style="margin-left: 10px; margin-top:10px" type="text" th:field="*{name_play}" >
                     </label></td>
                 </tr>
                 <tr>
-                    <td>Режиссер пьесы:</td>
+                    <td><h5 style="margin-left: 10px; margin-top:10px">Режиссер пьесы:</h5></td>
                     <td><label>
-                        <input type="text" th:field="*{director}">
+                        <input style="margin-left: 10px; margin-top:10px" type="text" th:field="*{director}">
                     </label></td>
                 </tr>
                 <tr>
-                    <td>Дата пьесы:</td>
+                    <td><h5 style="margin-left: 10px; margin-top:10px">Дата пьесы:</h5></td>
                     <td><label>
-                        <input type="datetime-local" th:field="*{data}">
+                        <input style="margin-left: 10px; margin-top:10px" type="datetime-local" th:field="*{data}">
                     </label></td>
                 </tr>
                 <tr>
-                    <td>Длительность пьесы:</td>
+                    <td><h5 style="margin-left: 10px; margin-top:10px">Длительность пьесы:</h5></td>
                     <td><label>
-                        <input type="text" th:field="*{duration}">
+                        <input style="margin-left: 10px; margin-top:10px" type="text" th:field="*{duration}">
                     </label></td>
                 </tr>
                 <tr>
-                    <td>Адрес филиала:</td>
+                    <td><h5 style="margin-left: 10px; margin-top:10px">Адрес филиала:</h5></td>
                     <td><label>
-                        <input type="text" th:field="*{adress}">
+                        <input style="margin-left: 10px; margin-top:10px" type="text" th:field="*{adress}">
                     </label></td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" class="btn_primary" data-toggle="button" aria-pressed="false" autocomplete="off">Сохранить</button>
+                        <button type="submit" class="btn_primary_save" data-toggle="button" aria-pressed="false" autocomplete="off">Сохранить</button>
                     </td>
                 </tr>
             </table>
