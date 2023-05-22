@@ -1,8 +1,6 @@
 package com.example.demotheatre;
 
-
 import java.util.List;
-
 
 import com.example.demotheatre.config.UserInfo;
 import com.example.demotheatre.config.UserService;
@@ -23,14 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class AppController {
-
-
     private final TheatreService theatreService;
 
     @Autowired
     private UserService userService;
-
-
 
     @PostMapping("/auth/register")
     public String addNewUser(@ModelAttribute UserInfo userInfo, @RequestParam String name, @RequestParam String roles, HttpSession session) {
@@ -46,17 +40,24 @@ public class AppController {
         return "register";
     }
 
-
-
-
     // основная страничка
     @RequestMapping("/")
-    public String viewHomePage(Model model, @Param("keyword") String keyword){
+    public String viewHomePage(Model model, @Param("keyword") String keyword, @PathVariable(name="id") Long id){
         List<Theatre> listTheatre = theatreService.listAll(keyword);
         model.addAttribute("listTheatre", listTheatre);
         model.addAttribute("keyword", keyword);
+        Theatre theatre = new Theatre();
+        model.addAttribute("theatre", theatre);
+
+        ModelAndView mav = new ModelAndView("edit_theatre");
+        Theatre theatre2 = theatreService.get(id);
+        mav.addObject("theatre2", theatre2);
+
         return "index";
     }
+
+
+
 
     // для добавления информации о пьесе
     @RequestMapping("/new")
@@ -89,9 +90,6 @@ public class AppController {
         return "redirect:/";
     }
 
-
-
-
     //  регистрация, вход
     @GetMapping("/login_page")
     public String showLogin() {
@@ -108,8 +106,4 @@ public class AppController {
         session.setAttribute("username", currentUser);
         return "redirect:/";
     }
-
-
-
-
 }
